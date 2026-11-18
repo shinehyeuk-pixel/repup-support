@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IMMA 친구 초대</title>
+<link rel="stylesheet" href="../style.css">
+<style>
+.code { font: 600 32px/1.2 ui-monospace, "SF Mono", Menlo, monospace; letter-spacing: 2px; margin: 24px 0; }
+.button { display: inline-block; background: var(--link); color: #fff; padding: 12px 24px; border-radius: 980px; font-weight: 600; }
+</style>
+</head>
+<body>
+<main>
+<h1>IMMA 친구 초대</h1>
+<p class="muted">친구가 IMMA에서 같이 운동하자고 초대했어요.</p>
+<p class="code" id="code">코드 없음</p>
+<p><a class="button" id="open" href="imma://invite/">IMMA에서 열기</a></p>
+<p>앱이 열리지 않으면 IMMA의 친구 탭에서 <strong>코드 입력</strong>을 누르고 위 코드를 입력하세요. 코드는 24시간 동안 한 사람만 쓸 수 있어요.</p>
+<p>아직 IMMA가 없다면 <a href="https://apps.apple.com/app/id6831421578">App Store에서 받기</a></p>
+<nav><a href="../">RepUp 지원</a> · <a href="../privacy/">개인정보처리방침</a></nav>
+</main>
+<script>
+// The code stays in this browser: it is only shown and handed to the app, never sent anywhere.
+const code = (new URLSearchParams(location.search).get('c') || '').toUpperCase().replace(/[^23456789A-HJ-NP-Z]/g, '')
+if (code.length === 10) {
+  document.getElementById('code').textContent = code.slice(0, 5) + '-' + code.slice(5)
+  document.getElementById('open').href = 'imma://invite/' + code
+}
+</script>
+</body>
+</html>
